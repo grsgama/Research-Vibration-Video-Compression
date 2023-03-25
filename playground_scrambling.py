@@ -5,7 +5,7 @@ import scipy.io
 import matplotlib.pyplot as plt
 
 
-video_path = 'video_samples/vibration.avi'
+video_path = 'C:/Repositorio/Research-Vibration-Video-Compression/video_samples/beam.avi'
 number_components = 8
 components_order = np.arange(number_components)
 sources_order = np.arange(number_components)
@@ -57,14 +57,17 @@ video_magnification.visualize_mode_shapes_and_modal_coordinates(modal_coordinate
 video_magnification.visualize_components_or_sources('modal coordinates', np.arange(len(modal_coordinates_order)))
 
 # video reconstruction
-frames_0, frames_1, frames_2, frames_3 = video_magnification.video_reconstruction()
+number_of_modes = modal_coordinates_order.size//2
+beam_factors = np.array([30, 15, 5])
+factors = beam_factors
+frames_0, frames_1, frames_2, frames_3 = video_magnification.video_reconstruction(number_of_modes, factors)
 video_magnification.create_video_from_frames("mode0_U", frames=frames_0)
 video_magnification.create_video_from_frames("mode1_U", frames=frames_1)
 video_magnification.create_video_from_frames("mode2_U", frames=frames_2)
 video_magnification.create_video_from_frames("mode3_U", frames=frames_3)
 
 # video reconstruction
-frames_0, frames_1, frames_2, frames_3 = video_magnification.video_reconstruction(do_unscramble=True)
+frames_0, frames_1, frames_2, frames_3 = video_magnification.video_reconstruction(number_of_modes, factors, do_unscramble=True)
 video_magnification.create_video_from_frames("mode0", frames=frames_0)
 video_magnification.create_video_from_frames("mode1", frames=frames_1)
 video_magnification.create_video_from_frames("mode2", frames=frames_2)

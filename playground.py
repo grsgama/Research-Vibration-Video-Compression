@@ -4,7 +4,7 @@ from video_processing import h5py_tools
 import numpy as np
 
 
-video_path = 'video_samples/beam.avi'
+video_path = 'video_samples/guitar.mp4'
 
 beam_number_components = 8
 structure_number_components = 12
